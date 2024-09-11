@@ -8,24 +8,30 @@ def adicionar_produto(nome, categoria, quantidade, preco): # CREATE
     novo_produto = {
         'nome': nome,
         'categoria': categoria,
-        'quantidade': quantidade,
-        'preco': preco
+        'quantidade': int(quantidade),
+        'preco': float(preco)
     }
     estoque.append(novo_produto)
+    return f"Produto '{nome}' adicionado com sucesso!"
 
-# READ
+def listar_produtos(): # READ
+    if not estoque:
+        return "Estoque vazio."
+    
+    lista = "\n".join([f"Nome: {p['nome']}, Categoria: {p['categoria']}, Quantidade: {p['quantidade']}, Preço: {p['preco']}" for p in estoque])
+    return lista
 
 def atualizar_estoque(nome, quantidade): # UPDATE
     for produto in estoque:
         if produto['nome'] == nome:
-            produto['quantidade'] += quantidade # adicionar mais produtos
-            return
+            produto['quantidade'] += int(quantidade)
+            return f"Quantidade do produto '{nome}' atualizada!"
     return "Produto não encontrado."
 
-# DELETE
-
-# teste unitário
-# adicionar_produto("laranja", "fruta", 30, 15.66)
-# print(estoque)
-# atualizar_estoque("laranja", 2)
-# print(estoque)
+def remover_produto(nome): # DELETE
+    for produto in estoque:
+        if produto['nome'] == nome:
+            estoque.remove(produto)
+            return f"Produto '{nome}' removido com sucesso."
+    
+    return "Produto não encontrado."
