@@ -1,13 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
 
-# Dicionário para armazenar os produtos
-produtos = {}
-
 def cadastrar_produto():
     messagebox.showinfo('Cadastrar produto')
   
-
 def localizar_produto():
     messagebox.showinfo('Localizar produto')
 
